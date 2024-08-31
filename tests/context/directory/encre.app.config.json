@@ -1,0 +1,14 @@
+{
+  "workflow": "this/is/a/path/to/encre/file",
+  "handlers": {
+    "dummy-input": {
+      "handlerType": "input",
+      "description": "A dummy input handler",
+      "event": "userInput",
+      "graphId": "XXX",
+      "nodeId": "XXX",
+      "portName": "xxx",
+      "dataType": "string"
+    }
+  }
+}

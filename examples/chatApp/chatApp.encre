@@ -1,0 +1,194 @@
+_type: graph
+id: S4Ja0y6a7xHwJE0M0
+title: ChatApp
+description: simplest graph for building a chat app
+nodes:
+  - _type: node
+    id: j28rjy8BazLC@II17
+    type: message
+    subType: prompt
+    title: SystemMessage
+    description: ""
+    runtime: 0
+    memory: 0
+    data:
+      _grp: 1
+      _type: constructor
+      _id:
+        - events
+        - input
+        - load
+        - msgs
+        - system
+        - SystemMessage
+      _kwargs:
+        content: You are a comic character. Your name is SpongeBob.
+    visualInfo:
+      position:
+        x: 0
+        y: 0
+      size:
+        width: 300
+        height: 500
+    inputs:
+      name:
+        - string
+        - unknown
+      content:
+        - string
+        - object
+        - unknown
+      additionalKwargs:
+        - object
+        - unknown
+    outputs:
+      message: chat-message
+    outputSizes:
+      message: 0
+    outgoingConnections:
+      message:
+        toNodeId: 0RCaXLg0XQI@Dr0QI
+        toPortName: input1
+  - _type: node
+    id: 7BFZbm30GG8Sk_pcM
+    type: message
+    subType: human
+    title: HumanMessage
+    description: ""
+    runtime: 0
+    memory: 0
+    data:
+      _grp: 1
+      _type: constructor
+      _id:
+        - events
+        - input
+        - load
+        - msgs
+        - human
+        - HumanMessage
+      _kwargs:
+        content: ""
+    visualInfo:
+      position:
+        x: 0
+        y: 0
+      size:
+        width: 300
+        height: 500
+    inputs:
+      name:
+        - string
+        - unknown
+      content:
+        - string
+        - object
+        - unknown
+      additionalKwargs:
+        - object
+        - unknown
+    outputs:
+      message: chat-message
+    outputSizes:
+      message: 0
+    outgoingConnections:
+      message:
+        toNodeId: 0RCaXLg0XQI@Dr0QI
+        toPortName: input2
+  - _type: node
+    id: 0RCaXLg0XQI@Dr0QI
+    type: prompt
+    subType: chat
+    title: ChatPrompt
+    description: ""
+    runtime: 0
+    memory: 0
+    data:
+      _grp: 1
+      _type: constructor
+      _id:
+        - events
+        - input
+        - load
+        - prompts
+        - chat
+        - ChatPrompt
+      _kwargs:
+        messages: []
+    visualInfo:
+      position:
+        x: 0
+        y: 0
+      size:
+        width: 300
+        height: 500
+    outputs:
+      prompt:
+        - string
+        - chat-message[]
+    outputSizes:
+      prompt: 0
+    outgoingConnections:
+      prompt:
+        toNodeId: ZSJ3g8tL6qsJU6R6c
+        toPortName: prompt
+  - _type: node
+    id: ZSJ3g8tL6qsJU6R6c
+    type: chatlm
+    subType: openai
+    title: OpenAIChat
+    description: ""
+    runtime: 0
+    memory: 0
+    data:
+      _grp: 1
+      _type: constructor
+      _id:
+        - events
+        - inference
+        - chat
+        - chatlms
+        - openai
+        - OpenAIChat
+      _kwargs:
+        model: moonshot-v1-8k
+        frequency_penalty: 0
+        presence_penalty: 0
+        stream: false
+        temperature: 1
+        max_tokens: 2048
+        top_p: 1
+        additional_kwargs: {}
+        openai_api_key:
+          _grp: 1
+          _type: secret
+          _id:
+            - OPENAI_API_KEY
+        configuration:
+          baseURL: https://api.moonshot.cn/v1
+    visualInfo:
+      position:
+        x: 0
+        y: 0
+      size:
+        width: 300
+        height: 500
+    inputs:
+      prompt:
+        - string
+        - chat-message[]
+    outputs:
+      output: string
+      message: chat-message
+      info:
+        - object
+        - unknown
+      tokenUsage:
+        - object
+        - unknown
+    outputSizes:
+      output: 0
+      message: 0
+      info: 0
+      tokenUsage: 0
+    outgoingConnections: {}

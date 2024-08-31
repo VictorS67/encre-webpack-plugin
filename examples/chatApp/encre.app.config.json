@@ -1,0 +1,31 @@
+{
+  "workflow": "[rename-this-to-actual-path]/chatApp.encre",
+  "handlers": {
+    "input-box": {
+      "handlerType": "input",
+      "description": "When a user input box is entered",
+      "event": "userInput",
+      "graphId": "S4Ja0y6a7xHwJE0M0",
+      "nodeId": "7BFZbm30GG8Sk_pcM",
+      "portName": "content",
+      "dataType": "string"
+    },
+    "send": {
+      "handlerType": "action",
+      "description": "When then send button is clicked",
+      "event": "runGraph",
+      "graphId": "S4Ja0y6a7xHwJE0M0",
+      "graphInputs": ["j28rjy8BazLC@II17", "7BFZbm30GG8Sk_pcM"],
+      "graphOutputs": ["ZSJ3g8tL6qsJU6R6c"]
+    },
+    "bot-message": {
+      "handlerType": "output",
+      "description": "The bot message is popped out",
+      "event": "nodeOutput",
+      "graphId": "S4Ja0y6a7xHwJE0M0",
+      "nodeId": "ZSJ3g8tL6qsJU6R6c",
+      "portName": "output",
+      "dataType": "string"
+    }
+  }
+}

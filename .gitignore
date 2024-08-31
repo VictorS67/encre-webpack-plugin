@@ -1,0 +1,12 @@
+logs
+*.log
+.eslintcache
+
+/dist
+/node_modules
+/tests/outputs
+
+.DS_Store
+Thumbs.db
+.idea
+.vscode

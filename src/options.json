@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "path from where the encre handler configuration file can be found.",
+      "minLength": 1
+    },
+    "context": {
+      "type": "string",
+      "description": "A path that determines how to interpret the 'from' path."
+    },
+    "noErrorOnMissing": {
+      "type": "boolean",
+      "description": "Doesn't generate an error on missing file."
+    }
+  },
+  "required": ["from"]
+}

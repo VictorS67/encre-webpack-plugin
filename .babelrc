@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "exclude": ["proposal-dynamic-import"],
+        "targets": {
+          "node": "18.12.0"
+        }
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
+}

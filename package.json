@@ -1,0 +1,60 @@
+{
+  "name": "encre-webpack-plugin",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Encre",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">= 18.12.0"
+  },
+  "scripts": {
+    "start": "npm run build",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=production babel src -d dist --copy-files",
+    "lint:js": "eslint --cache ./src && prettier --cache --list-different ./src",
+    "lint:test": "eslint --no-cache ./tests && prettier --no-cache --list-different ./tests",
+    "lint": "yarn run lint:js && yarn run lint:test",
+    "test:only": "cross-env NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "yarn run test:only -- --watch"
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "peerDependencies": {
+    "webpack": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
+    "@jest/globals": "^29.7.0",
+    "@types/node": "^20.13.0",
+    "@webpack-contrib/eslint-config-webpack": "^3.0.0",
+    "babel-jest": "^29.7.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "jest": "^29.4.1",
+    "memfs": "^4.11.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
+    "webpack": "^5.90.0"
+  },
+  "dependencies": {
+    "normalize-path": "^3.0.0",
+    "schema-utils": "^4.2.0"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "encre",
+    "handlers",
+    "configuration"
+  ]
+}
