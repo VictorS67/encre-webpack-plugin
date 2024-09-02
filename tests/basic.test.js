@@ -1,4 +1,5 @@
 import path from "path";
+
 import { describe, test } from "@jest/globals";
 
 import { runEmit } from "./utils/run";
@@ -31,7 +32,7 @@ describe("EncreWebpackPlugin", () => {
         expectedConfigName: path.join(
           CONTEXT_DIR,
           "directory",
-          "encre.app.config.json"
+          "encre.app.config.json",
         ),
         options: {
           context: "directory",
@@ -46,7 +47,7 @@ describe("EncreWebpackPlugin", () => {
         expectedConfigName: path.join(
           CONTEXT_DIR,
           "directory",
-          "encre.app.config.json"
+          "encre.app.config.json",
         ),
         expectedConfigContent: {
           workflow: "this/is/a/path/to/encre/file",

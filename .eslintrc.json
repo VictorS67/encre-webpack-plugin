@@ -1,6 +1,12 @@
 {
   "root": true,
-  "extends": ["@webpack-contrib/eslint-config-webpack", "prettier"],
+  "extends": [
+    "@webpack-contrib/eslint-config-webpack",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier"
+  ],
   "parser": "@babel/eslint-parser",
   "rules": {
     "import/no-extraneous-dependencies": [
@@ -16,6 +22,18 @@
         ],
         "optionalDependencies": false,
         "peerDependencies": false
+      }
+    ],
+    "prettier/prettier": ["off", { "singleQuote": true }],
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "class-methods-use-this": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "alphabetize": {
+          "order": "asc"
+        }
       }
     ]
   }
