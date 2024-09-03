@@ -148,16 +148,6 @@ function runEmit(opts) {
             );
           }
 
-          console.log(`expectedContent: ${expectedContent}`);
-          console.log(`compiledContent: ${compiledContent}`);
-
-          console.log(
-            `expectedContent Buffer: ${JSON.stringify(expectedContent)}`,
-          );
-          console.log(
-            `compiledContent Buffer: ${JSON.stringify(compiledContent)}`,
-          );
-
           expect(Buffer.compare(expectedContent, compiledContent)).toBe(0);
         }
       }
