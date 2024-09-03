@@ -131,16 +131,21 @@ function runEmit(opts) {
 
           if (!Buffer.isBuffer(expectedContent)) {
             expectedContent = Buffer.from(
-              typeof expectedContent === "string"
+              (typeof expectedContent === "string"
                 ? expectedContent.trim()
-                : JSON.stringify(expectedContent, null, 2).trim(),
+                : JSON.stringify(expectedContent, null, 2).trim()
+              ).replace(/\r\n/g, "\n"),
             );
           }
 
           if (!Buffer.isBuffer(compiledContent)) {
-            compiledContent = Buffer.from(compiledContent.trim());
+            compiledContent = Buffer.from(
+              compiledContent.trim().replace(/\r\n/g, "\n"),
+            );
           } else {
-            compiledContent = Buffer.from(compiledContent.toString().trim());
+            compiledContent = Buffer.from(
+              compiledContent.toString().trim().replace(/\r\n/g, "\n"),
+            );
           }
 
           console.log(`expectedContent: ${expectedContent}`);
