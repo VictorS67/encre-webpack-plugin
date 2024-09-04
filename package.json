@@ -8,20 +8,23 @@
     "node": ">= 18.12.0"
   },
   "scripts": {
-    "start": "npm run build",
     "clean": "rimraf dist",
-    "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production babel src -d dist --copy-files",
     "lint:js": "eslint --cache ./src --fix && prettier --write ./src",
     "lint:test": "eslint --cache ./tests --fix && prettier --write ./tests",
     "lint": "yarn run lint:js && yarn run lint:test",
     "test:only": "cross-env NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:watch": "yarn run test:only -- --watch"
+    "test:watch": "yarn run test:only -- --watch",
+    "release": "yarn lint && release-it --only-version --config .release-it.json"
   },
   "files": [
     "dist",
     "types"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "peerDependencies": {
     "webpack": "^5.1.0"
   },
