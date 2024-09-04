@@ -23,7 +23,7 @@ function stat(inputFileSystem, path) {
         }
 
         resolve(stats);
-      }
+      },
     );
   });
 }
@@ -49,7 +49,7 @@ function readFile(inputFileSystem, path) {
         }
 
         resolve(/** @type {string | Buffer} */ (data));
-      }
+      },
     );
   });
 }

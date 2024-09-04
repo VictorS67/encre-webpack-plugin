@@ -1,5 +1,6 @@
 import path from "path";
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { expect } from "@jest/globals";
 
 import EncreWebpackPlugin from "../../src/index";
@@ -112,12 +113,12 @@ function runEmit(opts) {
       if (path.isAbsolute(configName)) {
         configName = path.relative(
           /** @type {string} */ (compiler.options.output.path),
-          configName
+          configName,
         );
       } else {
         configName = path.relative(
           /** @type {string} */ (compiler.options.output.path),
-          path.resolve(__dirname, configName)
+          path.resolve(__dirname, configName),
         );
       }
 
@@ -130,16 +131,21 @@ function runEmit(opts) {
 
           if (!Buffer.isBuffer(expectedContent)) {
             expectedContent = Buffer.from(
-              typeof expectedContent === "string"
+              (typeof expectedContent === "string"
                 ? expectedContent.trim()
                 : JSON.stringify(expectedContent, null, 2).trim()
+              ).replace(/\r\n/g, "\n"),
             );
           }
 
           if (!Buffer.isBuffer(compiledContent)) {
-            compiledContent = Buffer.from(compiledContent.trim());
+            compiledContent = Buffer.from(
+              compiledContent.trim().replace(/\r\n/g, "\n"),
+            );
           } else {
-            compiledContent = Buffer.from(compiledContent.toString().trim());
+            compiledContent = Buffer.from(
+              compiledContent.toString().trim().replace(/\r\n/g, "\n"),
+            );
           }
 
           expect(Buffer.compare(expectedContent, compiledContent)).toBe(0);

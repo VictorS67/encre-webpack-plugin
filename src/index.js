@@ -1,15 +1,15 @@
 const path = require("path");
 
-const webpack = require("webpack");
-
 const { validate } = require("schema-utils");
+// eslint-disable-next-line import/no-extraneous-dependencies
+const webpack = require("webpack");
 
 const schema = require("./options.json");
 const { stat, readFile, memoize } = require("./utils");
 
 const getNormalizePath = memoize(() =>
   // eslint-disable-next-line global-require
-  require("normalize-path")
+  require("normalize-path"),
 );
 
 /** @typedef {import("schema-utils/declarations/validate").Schema} Schema */
@@ -99,7 +99,7 @@ class EncreWebpackPlugin {
           }
 
           resolve(/** @type {Snapshot} */ (snapshot));
-        }
+        },
       );
     });
   }
@@ -123,7 +123,7 @@ class EncreWebpackPlugin {
           }
 
           resolve(isValid);
-        }
+        },
       );
     });
   }
@@ -191,14 +191,14 @@ class EncreWebpackPlugin {
     if (fromType === "unknown") {
       if (options.noErrorOnMissing) {
         logger.log(
-          `finished to process a config from '${normalizedOriginalFrom}' using '${options.context}' context`
+          `finished to process a config from '${normalizedOriginalFrom}' using '${options.context}' context`,
         );
 
         return;
       }
 
       const missingError = new Error(
-        `unable to locate config from '${normalizedOriginalFrom}'`
+        `unable to locate config from '${normalizedOriginalFrom}'`,
       );
 
       compilation.errors.push(/** @type {WebpackError} */ (missingError));
@@ -232,7 +232,7 @@ class EncreWebpackPlugin {
       if (path.isAbsolute(filename)) {
         filename = path.relative(
           /** @type {string} */ (compiler.options.output.path),
-          absoluteFilename
+          absoluteFilename,
         );
       }
 
@@ -265,7 +265,7 @@ class EncreWebpackPlugin {
         try {
           isValidSnapshot = await EncreWebpackPlugin.checkSnapshotValid(
             compilation,
-            cacheEntry.snapshot
+            cacheEntry.snapshot,
           );
         } catch (error) {
           compilation.errors.push(/** @type {WebpackError} */ (error));
@@ -312,7 +312,7 @@ class EncreWebpackPlugin {
           snapshot = await EncreWebpackPlugin.createSnapshot(
             compilation,
             startTime,
-            absoluteFilename
+            absoluteFilename,
           );
         } catch (error) {
           compilation.errors.push(/** @type {WebpackError} */ (error));
@@ -349,14 +349,14 @@ class EncreWebpackPlugin {
     } catch (error) {
       if (options.noErrorOnMissing) {
         logger.log(
-          `finished to process a config from '${normalizedOriginalFrom}' using '${options.context}' context`
+          `finished to process a config from '${normalizedOriginalFrom}' using '${options.context}' context`,
         );
 
         return;
       }
 
       const missingError = new Error(
-        `unable to locate config from '${normalizedOriginalFrom}'`
+        `unable to locate config from '${normalizedOriginalFrom}'`,
       );
 
       compilation.errors.push(/** @type {WebpackError} */ (missingError));
@@ -406,7 +406,7 @@ class EncreWebpackPlugin {
               cache,
               /** @type {PluginOptions & { context: string }} */ (
                 normalizedOptions
-              )
+              ),
             );
           } catch (error) {
             compilation.errors.push(/** @type {WebpackError} */ (error));
@@ -422,18 +422,16 @@ class EncreWebpackPlugin {
             copiedResult;
 
           logger.log(
-            `writing '${filename}' from '${absoluteFilename}' to compilation assets...`
+            `writing '${filename}' from '${absoluteFilename}' to compilation assets...`,
           );
 
           compilation.emitAsset(filename, source);
 
           logger.log(
-            `written '${filename}' from '${absoluteFilename}' to compilation assets`
+            `written '${filename}' from '${absoluteFilename}' to compilation assets`,
           );
 
           logger.log("finished to adding additional assets");
-
-          const existingAsset = compilation.getStats().toJson().assets;
 
           const rawConfigData = source.source();
           const configData = Buffer.isBuffer(rawConfigData)
@@ -458,7 +456,7 @@ class EncreWebpackPlugin {
           logger.log("finished to load encre handler configuration");
 
           callback();
-        }
+        },
       );
 
       if (compilation.hooks.statsPrinter) {
@@ -468,9 +466,9 @@ class EncreWebpackPlugin {
             .tap("encre-webpack-plugin", (configured, { green, formatFlag }) =>
               configured
                 ? /** @type {Function} */ (green)(
-                    /** @type {Function} */ (formatFlag)("configured")
+                    /** @type {Function} */ (formatFlag)("configured"),
                   )
-                : ""
+                : "",
             );
         });
       }
